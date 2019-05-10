@@ -36,11 +36,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User updateUserDetail(User user) {
 		User user1 = getUserDetail(user.getUserId());
+		user1.setUserName(user.getUserName());
 		user1.setUserFirstName(user.getUserFirstName());
 		user1.setUserLastName(user.getUserLastName());
 		user1.setUserEmail(user.getUserEmail());
 		user1.setUserPassword(user.getUserPassword());
 		user1.setUserContactNumber(user.getUserContactNumber());
+		user1.setSecurityQuestion(user.getSecurityQuestion());
+		user1.setSecurityAnswer(user.getSecurityAnswer());
 		return dao.save(user1);
 	}
 
@@ -48,6 +51,11 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(int userId) {
 		dao.deleteById(userId);
 
+	}
+
+	@Override
+	public User getUserDetailByName(String userName) {
+		return dao.findByuserName(userName);
 	}
 
 }

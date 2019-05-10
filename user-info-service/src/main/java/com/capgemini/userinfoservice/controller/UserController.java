@@ -39,6 +39,12 @@ public class UserController {
 		User user = userService.getUserDetailByMail(userEmail);
 		return new ResponseEntity<User>(user, HttpStatus.FOUND);
 	}
+	
+	@GetMapping("/user/username/{userName}")
+	public ResponseEntity<User> getUserDetailsByUserName(@PathVariable String userName) {
+		User user = userService.getUserDetailByName(userName);
+		return new ResponseEntity<User>(user, HttpStatus.FOUND);
+	}
 
 	@PutMapping("/user")
 	public ResponseEntity<User> updateUserDetail(@RequestBody User user) {
@@ -47,7 +53,7 @@ public class UserController {
 	}
 
 	@DeleteMapping("/user/{userId}")
-	public ResponseEntity<User> deleteUser(@PathVariable int userId){
+	public ResponseEntity<User> deleteUser(@PathVariable int userId) {
 		userService.deleteUser(userId);
 		return new ResponseEntity<User>(HttpStatus.OK);
 	}

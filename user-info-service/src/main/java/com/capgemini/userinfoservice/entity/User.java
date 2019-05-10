@@ -7,31 +7,37 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="userDetails")
+@Table(name = "userDetails")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
+	private String userName;
 	private String userFirstName;
 	private String userLastName;
 	private String userEmail;
 	private String userPassword;
 	private long userContactNumber;
+	private String securityQuestion;
+	private String securityAnswer;
 
 	public User() {
 		super();
 	}
 
-	public User(int userId, String userFirstName, String userLastName, String userEmail, String userPassword,
-			long userContactNumber) {
+	public User(int userId, String userName, String userFirstName, String userLastName, String userEmail,
+			String userPassword, long userContactNumber, String securityQuestion, String securityAnswer) {
 		super();
 		this.userId = userId;
+		this.userName = userName;
 		this.userFirstName = userFirstName;
 		this.userLastName = userLastName;
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
 		this.userContactNumber = userContactNumber;
+		this.securityQuestion = securityQuestion;
+		this.securityAnswer = securityAnswer;
 	}
 
 	public int getUserId() {
@@ -40,6 +46,14 @@ public class User {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getUserFirstName() {
@@ -82,11 +96,20 @@ public class User {
 		this.userContactNumber = userContactNumber;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userFirstName=" + userFirstName + ", userLastName=" + userLastName
-				+ ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", userContactNumber="
-				+ userContactNumber + "]";
+	public String getSecurityQuestion() {
+		return securityQuestion;
+	}
+
+	public void setSecurityQuestion(String securityQuestion) {
+		this.securityQuestion = securityQuestion;
+	}
+
+	public String getSecurityAnswer() {
+		return securityAnswer;
+	}
+
+	public void setSecurityAnswer(String securityAnswer) {
+		this.securityAnswer = securityAnswer;
 	}
 
 }

@@ -9,4 +9,5 @@ import com.capgemini.userinfoservice.entity.User;
 public interface UserDao extends JpaRepository<User, Integer> {
 
 	public User findByuserEmail(String userEmail);
+	public User findByuserName(String  userName);
 }

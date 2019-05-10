@@ -9,4 +9,5 @@ public interface UserService {
 	public User getUserDetailByMail(String userEmail);
 	public User updateUserDetail(User user);
 	public void deleteUser(int userId);
+	public User getUserDetailByName(String userName);
 }
