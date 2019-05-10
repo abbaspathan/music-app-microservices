@@ -11,6 +11,8 @@ public class Song {
 	private String songTitle;
 	private String songUrl;
 	private int albumId;
+	private String albumName;
+	private int artistId;
 	private String artistName;
 	private String regionName;
 	private String songImage;
@@ -19,13 +21,15 @@ public class Song {
 		super();
 	}
 
-	public Song(int songId, String songTitle, String songUrl, int albumId, String artistName, String regionName,
-			String songImage) {
+	public Song(int songId, String songTitle, String songUrl, int albumId, String albumName, int artistId,
+			String artistName, String regionName, String songImage) {
 		super();
 		this.songId = songId;
 		this.songTitle = songTitle;
 		this.songUrl = songUrl;
 		this.albumId = albumId;
+		this.albumName = albumName;
+		this.artistId = artistId;
 		this.artistName = artistName;
 		this.regionName = regionName;
 		this.songImage = songImage;
@@ -61,6 +65,22 @@ public class Song {
 
 	public void setAlbumId(int albumId) {
 		this.albumId = albumId;
+	}
+
+	public String getAlbumName() {
+		return albumName;
+	}
+
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
+	}
+
+	public int getArtistId() {
+		return artistId;
+	}
+
+	public void setArtistId(int artistId) {
+		this.artistId = artistId;
 	}
 
 	public String getArtistName() {
