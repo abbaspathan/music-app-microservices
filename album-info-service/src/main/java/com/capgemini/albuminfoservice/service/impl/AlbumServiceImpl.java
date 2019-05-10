@@ -18,8 +18,6 @@ public class AlbumServiceImpl implements AlbumService {
 	@Autowired
 	private AlbumDao albumDao;
 
-	private String baseUrl = "http://localhost:8082/song";
-
 	@Override
 	public Album addNewAlbum(Album album) {
 		return albumDao.insert(album);
@@ -32,11 +30,7 @@ public class AlbumServiceImpl implements AlbumService {
 
 	@Override
 	public Album getAlbumById(int albumId) {
-		RestTemplate restTemplate = new RestTemplate();
-		SongList songList = restTemplate.getForEntity(baseUrl + "/album/" + albumId, SongList.class).getBody();
-		Album album = albumDao.findById(albumId).get();
-		album.setSongs(songList.getSongs());
-		return album;
+		return albumDao.findById(albumId).get();
 	}
 
 }
