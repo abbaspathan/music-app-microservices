@@ -35,6 +35,12 @@ public class SongController {
 		return new ResponseEntity<List<Song>>(songs, HttpStatus.OK);
 	}
 
+	@GetMapping("/song/{songId}")
+	public ResponseEntity<Song> getSongById(@PathVariable int songId) {
+		Song songs = songService.getSongById(songId);
+		return new ResponseEntity<Song>(songs, HttpStatus.OK);
+	}
+
 	@GetMapping("/song/album/{albumId}")
 	public ResponseEntity<SongList> getAllSongsByAlbumId(@PathVariable int albumId) {
 		SongList songs = new SongList();
@@ -42,11 +48,11 @@ public class SongController {
 		return new ResponseEntity<SongList>(songs, HttpStatus.OK);
 	}
 
-	@GetMapping("/song/artist/{artistName}")
-	public ResponseEntity<SongList> getAllSongsByArtistName(@PathVariable String artistName) {
+	@GetMapping("/song/artist/{artistId}")
+	public ResponseEntity<SongList> getAllSongsByArtistName(@PathVariable int artistId) {
 
 		SongList songs = new SongList();
-		songs.setSongs(songService.getAllSongsByArtistName(artistName));
+		songs.setSongs(songService.getAllSongsByArtistId(artistId));
 		return new ResponseEntity<SongList>(songs, HttpStatus.OK);
 	}
 }

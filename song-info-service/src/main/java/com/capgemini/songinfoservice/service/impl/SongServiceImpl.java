@@ -31,8 +31,14 @@ public class SongServiceImpl implements SongService {
 	}
 
 	@Override
-	public List<Song> getAllSongsByArtistName(String artistName) {
-		return dao.findByArtistName(artistName);
+	public Song getSongById(int songId) {
+		return dao.findById(songId).get();
+	}
+
+	@Override
+	public List<Song> getAllSongsByArtistId(int artistId) {
+
+		return dao.findByArtistId(artistId);
 	}
 
 }

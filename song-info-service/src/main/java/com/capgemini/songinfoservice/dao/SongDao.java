@@ -12,5 +12,5 @@ public interface SongDao extends MongoRepository<Song, Integer> {
 
 	public List<Song> findByAlbumId(int albumId);
 
-	public List<Song> findByArtistName(String artistName);
+	public List<Song> findByArtistId(int artistId);
 }

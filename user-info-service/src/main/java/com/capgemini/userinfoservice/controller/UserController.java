@@ -31,25 +31,25 @@ public class UserController {
 	@GetMapping("/user/{userId}")
 	public ResponseEntity<User> getUserDetails(@PathVariable int userId) {
 		User user = userService.getUserDetail(userId);
-		return new ResponseEntity<User>(user, HttpStatus.FOUND);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
 	@GetMapping("/user/bymail/{userEmail}")
 	public ResponseEntity<User> getUserDetailsByMail(@PathVariable String userEmail) {
 		User user = userService.getUserDetailByMail(userEmail);
-		return new ResponseEntity<User>(user, HttpStatus.FOUND);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
 	@GetMapping("/user/username/{userName}")
 	public ResponseEntity<User> getUserDetailsByUserName(@PathVariable String userName) {
 		User user = userService.getUserDetailByName(userName);
-		return new ResponseEntity<User>(user, HttpStatus.FOUND);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
 	@PutMapping("/user")
 	public ResponseEntity<User> updateUserDetail(@RequestBody User user) {
 		User user1 = userService.updateUserDetail(user);
-		return new ResponseEntity<User>(user1, HttpStatus.FOUND);
+		return new ResponseEntity<User>(user1, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/user/{userId}")
