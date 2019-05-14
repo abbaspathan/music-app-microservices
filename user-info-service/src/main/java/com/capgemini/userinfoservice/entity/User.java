@@ -1,5 +1,6 @@
 package com.capgemini.userinfoservice.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -17,10 +18,11 @@ public class User {
 	private long userContactNumber;
 	private String securityQuestion;
 	private String securityAnswer;
-	private List<Integer> userFavourite;
+	private List<Integer> userFavourite = new ArrayList<Integer>();
 
 	public User() {
 		super();
+		userFavourite.add(1);
 	}
 
 	public User(String userName, String userFirstName, String userLastName, String userEmail, String userPassword,

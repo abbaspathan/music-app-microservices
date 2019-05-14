@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
 		User user1 = getUserDetailByMail(user.getUserEmail());
 
 		List<Integer> favList = user1.getUserFavourite();
+
 		for (Integer list : user.getUserFavourite()) {
 			favList.add(list);
 		}
@@ -75,6 +76,11 @@ public class UserServiceImpl implements UserService {
 			songs.add(song);
 		}
 		return songs;
+	}
+
+	@Override
+	public User updateUserFavouriteSong(User user) {
+		return dao.save(user);
 	}
 
 }

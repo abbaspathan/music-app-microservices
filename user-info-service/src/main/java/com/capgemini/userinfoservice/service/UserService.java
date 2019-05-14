@@ -16,5 +16,7 @@ public interface UserService {
 	public User getUserDetailByName(String userName);
 	
 	public List<Song> getAllFavouriteSong(String userEmail);
+	
+	public User updateUserFavouriteSong(User user);
 
 }
