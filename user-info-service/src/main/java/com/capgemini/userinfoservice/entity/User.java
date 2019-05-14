@@ -1,35 +1,31 @@
 package com.capgemini.userinfoservice.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
 
-@Entity
-@Table(name = "userDetails")
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "user_details")
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int userId;
 	private String userName;
 	private String userFirstName;
 	private String userLastName;
+	@Id
 	private String userEmail;
 	private String userPassword;
 	private long userContactNumber;
 	private String securityQuestion;
 	private String securityAnswer;
+	private List<Integer> userFavourite;
 
 	public User() {
 		super();
 	}
 
-	public User(int userId, String userName, String userFirstName, String userLastName, String userEmail,
-			String userPassword, long userContactNumber, String securityQuestion, String securityAnswer) {
+	public User(String userName, String userFirstName, String userLastName, String userEmail, String userPassword,
+			long userContactNumber, String securityQuestion, String securityAnswer, List<Integer> userFavourite) {
 		super();
-		this.userId = userId;
 		this.userName = userName;
 		this.userFirstName = userFirstName;
 		this.userLastName = userLastName;
@@ -38,14 +34,7 @@ public class User {
 		this.userContactNumber = userContactNumber;
 		this.securityQuestion = securityQuestion;
 		this.securityAnswer = securityAnswer;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
+		this.userFavourite = userFavourite;
 	}
 
 	public String getUserName() {
@@ -110,6 +99,14 @@ public class User {
 
 	public void setSecurityAnswer(String securityAnswer) {
 		this.securityAnswer = securityAnswer;
+	}
+
+	public List<Integer> getUserFavourite() {
+		return userFavourite;
+	}
+
+	public void setUserFavourite(List<Integer> userFavourite) {
+		this.userFavourite = userFavourite;
 	}
 
 }

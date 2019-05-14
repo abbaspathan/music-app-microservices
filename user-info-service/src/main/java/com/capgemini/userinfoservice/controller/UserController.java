@@ -1,5 +1,7 @@
 package com.capgemini.userinfoservice.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capgemini.userinfoservice.entity.Song;
 import com.capgemini.userinfoservice.entity.User;
 import com.capgemini.userinfoservice.service.UserService;
 
@@ -28,33 +31,27 @@ public class UserController {
 		return new ResponseEntity<User>(user1, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/user/{userId}")
-	public ResponseEntity<User> getUserDetails(@PathVariable int userId) {
-		User user = userService.getUserDetail(userId);
-		return new ResponseEntity<User>(user, HttpStatus.OK);
-	}
-
 	@GetMapping("/user/bymail/{userEmail}")
 	public ResponseEntity<User> getUserDetailsByMail(@PathVariable String userEmail) {
 		User user = userService.getUserDetailByMail(userEmail);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/user/username/{userName}")
 	public ResponseEntity<User> getUserDetailsByUserName(@PathVariable String userName) {
 		User user = userService.getUserDetailByName(userName);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
+	@GetMapping("/user/favourite/{userEmail}")
+	public ResponseEntity<List<Song>> getAllFavouriteSong(@PathVariable String userEmail) {
+		List<Song> songs = userService.getAllFavouriteSong(userEmail);
+		return new ResponseEntity<List<Song>>(songs, HttpStatus.OK);
+	}
+
 	@PutMapping("/user")
 	public ResponseEntity<User> updateUserDetail(@RequestBody User user) {
 		User user1 = userService.updateUserDetail(user);
 		return new ResponseEntity<User>(user1, HttpStatus.OK);
-	}
-
-	@DeleteMapping("/user/{userId}")
-	public ResponseEntity<User> deleteUser(@PathVariable int userId) {
-		userService.deleteUser(userId);
-		return new ResponseEntity<User>(HttpStatus.OK);
 	}
 }
