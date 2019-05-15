@@ -17,8 +17,11 @@ public class UserFavouriteSongServiceImpl implements UserFavouriteSongService {
 
 	@Autowired
 	private UserFavouriteSongDao userFavouriteDao;
-	
-	private String baseUrl="http://localhost:8082/song/";
+
+	@Autowired
+	private RestTemplate restTemplate;
+
+	private String baseUrl = "http://localhost:8082/song/";
 
 	@Override
 	public UserFavouriteSong addFavouriteSong(String userEmail, int songId) {
@@ -38,13 +41,11 @@ public class UserFavouriteSongServiceImpl implements UserFavouriteSongService {
 
 	@Override
 	public List<Song> getFavouriteSongList(String userEmail) {
-		UserFavouriteSong favouriteSong=userFavouriteDao.findByuserEmail(userEmail);
-		
-		RestTemplate restTemplate = new RestTemplate();
+		UserFavouriteSong favouriteSong = userFavouriteDao.findByuserEmail(userEmail);
 
 		List<Song> songs = new ArrayList<Song>();
 
-		for (int songId :favouriteSong.getFavouriteSong() ) {
+		for (int songId : favouriteSong.getFavouriteSong()) {
 			Song song = restTemplate.getForEntity(baseUrl + songId, Song.class).getBody();
 			songs.add(song);
 		}
