@@ -3,10 +3,6 @@ package com.capgemini.userinfoservice.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- * @author abbpatha
- *
- */
 @Document(collection = "user_details")
 public class User {
 
@@ -19,13 +15,14 @@ public class User {
 	private long userContactNumber;
 	private String securityQuestion;
 	private String securityAnswer;
+	private String role;
 
 	public User() {
 		super();
 	}
 
 	public User(String userName, String userFirstName, String userLastName, String userEmail, String userPassword,
-			long userContactNumber, String securityQuestion, String securityAnswer) {
+			long userContactNumber, String securityQuestion, String securityAnswer,String role) {
 		super();
 		this.userName = userName;
 		this.userFirstName = userFirstName;
@@ -35,6 +32,7 @@ public class User {
 		this.userContactNumber = userContactNumber;
 		this.securityQuestion = securityQuestion;
 		this.securityAnswer = securityAnswer;
+		this.role = role;
 	}
 
 	public String getUserName() {
@@ -99,6 +97,14 @@ public class User {
 
 	public void setSecurityAnswer(String securityAnswer) {
 		this.securityAnswer = securityAnswer;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }

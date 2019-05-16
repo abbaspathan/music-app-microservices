@@ -1,5 +1,7 @@
 package com.capgemini.userinfoservice.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capgemini.userinfoservice.entity.Authenticate;
 import com.capgemini.userinfoservice.entity.User;
 import com.capgemini.userinfoservice.service.UserService;
 
@@ -23,8 +26,15 @@ public class UserController {
 
 	@PostMapping("/user")
 	public ResponseEntity<User> addNewUser(@RequestBody User user) {
+		user.setRole("user");
 		User user1 = userService.addNewUser(user);
 		return new ResponseEntity<User>(user1, HttpStatus.CREATED);
+	}
+
+	@PostMapping("/user/auth")
+	public ResponseEntity<User> authenticateUser(@RequestBody Authenticate authenticate) {
+		User user = userService.authenticateUser(authenticate);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
 	@GetMapping("/user/bymail/{userEmail}")
@@ -37,14 +47,18 @@ public class UserController {
 	public ResponseEntity<User> getUserDetailsByUserName(@PathVariable String userName) {
 		User user = userService.getUserDetailByName(userName);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
-	}  
-	  
-	  @PutMapping("/user") public ResponseEntity<User>
-	  updateUserDetail(@RequestBody User user ) { User
-	  user1 = userService.updateUserDetail(user); return new
-	  ResponseEntity<User>(user1, HttpStatus.OK); }
-	  
-	  
-	 
+	}
+
+	@PutMapping("/user")
+	public ResponseEntity<User> updateUserDetail(@RequestBody User user) {
+		User user1 = userService.updateUserDetail(user);
+		return new ResponseEntity<User>(user1, HttpStatus.OK);
+	}
+
+	@GetMapping("/user")
+	public ResponseEntity<List<User>> getAllUserDetails() {
+		List<User> users = userService.getAllUser();
+		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+	}
 
 }
