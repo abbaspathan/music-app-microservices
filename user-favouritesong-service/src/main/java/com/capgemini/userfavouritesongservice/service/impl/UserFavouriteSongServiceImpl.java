@@ -21,7 +21,7 @@ public class UserFavouriteSongServiceImpl implements UserFavouriteSongService {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	private String baseUrl = "http://localhost:8082/song/";
+	private String baseUrl = "http://SONG-INFO-SERVICE/song/";
 
 	@Override
 	public UserFavouriteSong addFavouriteSong(String userEmail, int songId) {

@@ -27,7 +27,7 @@ public class AlbumController {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	private String baseUrl = "http://localhost:8082/song";
+	private String baseUrl = "http://SONG-INFO-SERVICE/song";
 
 	@PostMapping("/album")
 	public ResponseEntity<Album> addNewAlbum(@RequestBody Album album) {
